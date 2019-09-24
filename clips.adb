@@ -113,8 +113,8 @@ package body Clips is
                           return Fact_Ptr;
    pragma Import (C, Clips_Assert, "AssertString");
 
-   procedure InitializeCLIPS;
-   pragma Import (C, InitializeCLIPS, "InitializeCLIPS");
+   procedure InitializeEnvironment;
+   pragma Import (C, InitializeEnvironment, "InitializeEnvironment");
 
    function Clips_Load (FileName : in Interfaces.C.Char_Array)
                         return Interfaces.C.Int;
@@ -203,7 +203,7 @@ package body Clips is
    pragma Import (C, Clips_Facts, "Facts");
 
    function GetFocus return Module_Ptr;
-   pragma Import (C, GetFocus, "WRGetFocus");
+   pragma Import (C, GetFocus, "GetFocus");
 
    function FindDefmodule (DefmoduleName : in Interfaces.C.Char_Array)
                            return Module_Ptr;
@@ -232,7 +232,7 @@ package body Clips is
    ---------------------------------------------------------------------------
    procedure Initialize is
    begin
-      InitializeCLIPS;
+      InitializeEnvironment;
    end Initialize;
 
    ---------------------------------------------------------------------------
