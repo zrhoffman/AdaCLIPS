@@ -1,0 +1,9 @@
+project Hello_World is
+   for Languages use ("Ada", "C");
+   for Source_Dirs use (".", "clips");
+   for Main use ("hello_world.adb");
+
+   package Linker is
+      for Switches ("Ada") use ("-lm");
+   end Linker;
+end Hello_World;
