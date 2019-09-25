@@ -123,6 +123,9 @@ package body Clips is
    procedure Clips_Reset;
    pragma Import (C, Clips_Reset, "Reset");
 
+   procedure Clips_Clear;
+   pragma Import (C, Clips_Clear, "Clear");
+
    procedure Clips_Halt;
    pragma Import (C, Clips_Halt, "Halt");
 
@@ -255,6 +258,14 @@ package body Clips is
    begin
       Clips_Reset;
    end Reset;
+
+   ---------------------------------------------------------------------------
+   -- Clear the CLIPS environment.
+   ---------------------------------------------------------------------------
+   procedure Clear is
+   begin
+      Clips_Clear;
+   end Clear;
 
    ---------------------------------------------------------------------------
    -- Halt the CLIPS environment.
