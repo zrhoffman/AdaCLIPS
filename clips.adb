@@ -123,6 +123,9 @@ package body Clips is
    procedure Clips_Reset;
    pragma Import (C, Clips_Reset, "Reset");
 
+   procedure Clips_Halt;
+   pragma Import (C, Clips_Halt, "Halt");
+
    function Clips_Retract (FactPtr : in Fact_Ptr) return Interfaces.C.Int;
    pragma Import (C, Clips_Retract, "Retract");
 
@@ -252,6 +255,14 @@ package body Clips is
    begin
       Clips_Reset;
    end Reset;
+
+   ---------------------------------------------------------------------------
+   -- Halt the CLIPS environment.
+   ---------------------------------------------------------------------------
+   procedure Halt is
+   begin
+      Clips_Halt;
+   end Halt;
 
    -----------------------------------------------------------------
    -- Causes a fact asserted by the ASSERT_FACT function to be retracted.
