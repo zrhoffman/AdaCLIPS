@@ -107,6 +107,12 @@ package Clips is
    procedure Run (Run_Limit : in Integer := -1);
 
    -----------------------------------------------------------------
+   -- Evaluate a string as CLIPS code. Only functions can be
+   -- evaluated.
+   -----------------------------------------------------------------
+   procedure Eval (EvalString : in String);
+
+   -----------------------------------------------------------------
    -- Asserts a fact into the CLIPS fact-list. The function version
    -- returns the Fact_Pointer required by Retract
    -----------------------------------------------------------------

@@ -136,6 +136,12 @@ package body Clips is
                        return Interfaces.C.Long;
    pragma Import (C, Clips_Run, "Run");
 
+   function Clips_Eval
+     (TheString    : in Interfaces.C.Char_Array;
+      ReturnValue  : in Data_Object_Ptr
+      ) return Interfaces.C.Int;
+   pragma Import (C, Clips_Eval, "Eval");
+
    function Clips_Define_Function_Void_2
      (FunctionName         : in Interfaces.C.Char_Array;
       FunctionType         : in Interfaces.C.Char;
@@ -301,6 +307,23 @@ package body Clips is
    begin
       Rules_Fired := Clips_Run (Interfaces.C.Long(Run_Limit));
    end Run;
+
+   -----------------------------------------------------------------
+   -- Evaluate a string as CLIPS code. Only functions can be
+   -- evaluated.
+   -----------------------------------------------------------------
+
+   procedure Eval (EvalString : in String) is
+      Slot_Object : aliased Data_Object;
+   begin
+      if Clips_Eval
+        (TheString   => Interfaces.C.To_C (EvalString),
+         ReturnValue => Slot_Object'Unchecked_Access
+         ) = 0
+      then
+         raise Failure;
+      end if;
+   end Eval;
 
    -----------------------------------------------------------------
    -- Define a new function for CLIPS.
